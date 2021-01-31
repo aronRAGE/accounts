@@ -18,12 +18,74 @@
 <body>
     <div class="container">
         <ul class="accounts-list row" id="accounts-list">
-            <!-- <li class="accounts-list-account col-6 row">
+            <!-- <li class="accounts-list-account col-6 row" id="${user.id}">
                 <div class="accounts-list-info col-8 row">
-                    <h1 class="accounts-list-account-name col-9">name<span>(username)</span> last name</h1>
-                    <h2 class="accounts-list-account-website"><a href="#">website: <span> www.website.com</span></a></h2>
-                    <h2 class="accounts-list-account-mail"><a href="#">E-mail:  <span> mail@gmail.com</span></a></h2>
-                    <button class="accounts-list-account-more-info col-6">more</button>
+                    <h1 class="accounts-list-account-name col-9">${user.name},<span>${user.username}</span></h1>
+                    <h2 class="accounts-list-account-website"><a href="#">website: <span> ${user.website}</span></a></h2>
+                    <h2 class="accounts-list-account-mail"><a href="#">E-mail:  <span> ${user.email}</span></a></h2>
+                    <button class="accounts-list-account-more-info col-6" id="openDialog">
+                        more
+                    </button>
+                    <dialog class="more-info">
+                        <div class="container">
+                         <button class="close-dialog fas fa-times" id="closeDialog"></button>
+                         <div class="more-info-content row">
+                            <div class="col-6 row more-info-column">
+                                <div class="col-4 row">
+                                    <div class="col-12 more-info-content-info">name</div>
+                                </div>
+                                <div class="col-8 row">
+                                    <div class="col-12 more-info-content-info">${user.name}</div>
+                                </div>
+                             </div>
+                             <div class="col-6 row more-info-column">
+                                <div class="col-4 row">
+                                    <div class="col-12 more-info-content-info">username</div>
+                                </div>
+                                <div class="col-8 row">
+                                    <div class="col-12 more-info-content-info">${user.username}</div>
+                                </div>
+                             </div>
+                             <div class="col-6 row more-info-column">
+                                <div class="col-4 row">
+                                    <div class="col-12 more-info-content-info">address</div>
+                                </div>
+                                <div class="col-8 row">
+                                    <div class="col-12 more-info-content-info">${user.address.street}</div>
+                                    <div class="col-12 more-info-content-info">${user.address.suite}</div>
+                                    <div class="col-12 more-info-content-info">${user.address.city}</div>
+                                    <div class="col-12 more-info-content-info">${user.address.zipcode}</div>
+                                </div>
+                             </div>
+                             <div class="col-6 row more-info-column">
+                                <div class="col-4 row">
+                                    <div class="col-12 more-info-content-info">phone</div>
+                                </div>
+                                <div class="col-8 row">
+                                    <div class="col-12 more-info-content-info">${user.phone}</div>
+                                </div>
+                             </div>
+                             <div class="col-6 row more-info-column">
+                                <div class="col-4 row">
+                                    <div class="col-12 more-info-content-info">company</div>
+                                </div>
+                                <div class="col-8 row">
+                                    <div class="col-12 more-info-content-info">${user.company.name}</div>
+                                    <div class="col-12 more-info-content-info">${user.company.catchPhrase}</div>
+                                    <div class="col-12 more-info-content-info">${user.company.bs}</div>
+                                </div>
+                             </div>
+                             <div class="col-6 row more-info-column">
+                                <div class="col-4 row">
+                                    <div class="col-12 more-info-content-info">website</div>
+                                </div>
+                                <div class="col-8 row">
+                                    <div class="col-12 more-info-content-info">${user.website}</div>
+                                </div>
+                             </div>
+                         </div>
+                        </div>
+                    </dialog>
                 </div>
                 <div class="accounts-list-photo col-4">
                     <img width="200" height="200"  src="img/person.jpg" alt="person">

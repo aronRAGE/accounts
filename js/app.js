@@ -22,19 +22,28 @@
 //   }
 // },
 
+let dialog = document.querySelector('dialog');
+const openDialog = document.getElementById('openDialog')
+const closeDialog = document.getElementById('closeDialog')
+const accountsList = document.getElementById('accounts-list')
+let accounts = []
 
-let accounts = getData()
+getData()
 
 async function getData() {
   let url = 'https://jsonplaceholder.typicode.com/users'
   const response = await fetch(url)
-  let data = await response.json();
+  let data = await response.json()
+  accounts = data
   renderAccountList(data, accountsList)
-  return data
 }
 
-const accountsList = document.getElementById('accounts-list')
-
+openDialog.addEventListener('click', event => {
+    dialog.show();
+  })
+  closeDialog.addEventListener('click', event => {
+    dialog.close();
+  })
 
 
 
@@ -54,12 +63,74 @@ function renderAccountList(data, node) {
 }
 function createHTML(user) {
 
-  return `<li class="accounts-list-account col-5 row">
+  return `<li class="accounts-list-account col-5 row" id="${user.id}">
   <div class="accounts-list-info col-8 row">
       <h1 class="accounts-list-account-name col-9">${user.name},<span>${user.username}</span></h1>
       <h2 class="accounts-list-account-website"><a href="#">website: <span> ${user.website}</span></a></h2>
       <h2 class="accounts-list-account-mail"><a href="#">E-mail:  <span> ${user.email}</span></a></h2>
-      <button class="accounts-list-account-more-info col-6">more</button>
+      <button class="accounts-list-account-more-info col-6" id="openDialog">
+          more
+      </button>
+      <dialog class="more-info">
+          <div class="container">
+           <button class="close-dialog fas fa-times" id="closeDialog"></button>
+           <div class="more-info-content row">
+              <div class="col-6 row more-info-column">
+                  <div class="col-4 row">
+                      <div class="col-12 more-info-content-info">name</div>
+                  </div>
+                  <div class="col-8 row">
+                      <div class="col-12 more-info-content-info">${user.name}</div>
+                  </div>
+               </div>
+               <div class="col-6 row more-info-column">
+                  <div class="col-4 row">
+                      <div class="col-12 more-info-content-info">username</div>
+                  </div>
+                  <div class="col-8 row">
+                      <div class="col-12 more-info-content-info">${user.username}</div>
+                  </div>
+               </div>
+               <div class="col-6 row more-info-column">
+                  <div class="col-4 row">
+                      <div class="col-12 more-info-content-info">address</div>
+                  </div>
+                  <div class="col-8 row">
+                      <div class="col-12 more-info-content-info">${user.address.street}</div>
+                      <div class="col-12 more-info-content-info">${user.address.suite}</div>
+                      <div class="col-12 more-info-content-info">${user.address.city}</div>
+                      <div class="col-12 more-info-content-info">${user.address.zipcode}</div>
+                  </div>
+               </div>
+               <div class="col-6 row more-info-column">
+                  <div class="col-4 row">
+                      <div class="col-12 more-info-content-info">phone</div>
+                  </div>
+                  <div class="col-8 row">
+                      <div class="col-12 more-info-content-info">${user.phone}</div>
+                  </div>
+               </div>
+               <div class="col-6 row more-info-column">
+                  <div class="col-4 row">
+                      <div class="col-12 more-info-content-info">company</div>
+                  </div>
+                  <div class="col-8 row">
+                      <div class="col-12 more-info-content-info">${user.company.name}</div>
+                      <div class="col-12 more-info-content-info">${user.company.catchPhrase}</div>
+                      <div class="col-12 more-info-content-info">${user.company.bs}</div>
+                  </div>
+               </div>
+               <div class="col-6 row more-info-column">
+                  <div class="col-4 row">
+                      <div class="col-12 more-info-content-info">website</div>
+                  </div>
+                  <div class="col-8 row">
+                      <div class="col-12 more-info-content-info">${user.website}</div>
+                  </div>
+               </div>
+           </div>
+          </div>
+      </dialog>
   </div>
   <div class="accounts-list-photo col-4">
       <img width="200" height="200"  src="img/person.jpg" alt="person">
